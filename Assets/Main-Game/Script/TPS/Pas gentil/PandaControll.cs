@@ -38,7 +38,7 @@ public class PandaControll : MonoBehaviour
     private void speedboost()
     {
 
-        speedy += 20;
+        speedy += 21;
 
     }
 

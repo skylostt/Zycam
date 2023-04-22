@@ -106,8 +106,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8750849441817674725}
-  - component: {fileID: -8790405852334977680}
   - component: {fileID: -1862921007978953073}
+  - component: {fileID: 8865884798253219016}
   - component: {fileID: 2725945307727810226}
   m_Layer: 0
   m_Name: Panda Roux
@@ -132,21 +132,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8790405852334977680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8750849441817674722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb5df367cae0f5a458fdd9cf739721ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedy: 15
-  SpawnSoundmageule: {fileID: 8300000, guid: 546f49525ef358a499cc748c89bb0be0, type: 3}
-  Particulespawn: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
 --- !u!54 &-1862921007978953073
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -174,6 +159,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8865884798253219016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750849441817674722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3bbcc4f9ef80fd49b51b3216b79fbdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedy: 15
+  SpawnSoundmageule: {fileID: 8300000, guid: 546f49525ef358a499cc748c89bb0be0, type: 3}
+  Particulespawn: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
 --- !u!82 &2725945307727810226
 AudioSource:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ AudioSource:
   m_GameObject: {fileID: 8750849441817674722}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 5359967778856054f83989aaa6c68e00, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
