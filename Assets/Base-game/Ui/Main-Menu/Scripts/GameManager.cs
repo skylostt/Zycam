@@ -28,10 +28,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void switchscene2(string sceneName2)
-    {
-        SceneManager.LoadScene(sceneName2);
-    }
 
     public void Quit()
     {

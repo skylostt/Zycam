@@ -25,8 +25,6 @@ public class MouvementPour3personne : MonoBehaviour
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
 
-    //Bool pour savoir si on met sur pause ou pas :)
-    private bool ispause;
     
     //private
     // on recup la velocity de x,y,z
@@ -39,11 +37,48 @@ public class MouvementPour3personne : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    //pour mettre en pause
+
+    public GameObject pauseMenu;
+
+    public void TogglePauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        Time.timeScale = pauseMenu.activeSelf ? 0f : 1f; // Mettre en pause ou reprendre le temps
+
+        // Si le menu de pause est actif, on débloque la souris et on l'affiche
+        if (pauseMenu.activeSelf)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        // Sinon, on cache la souris et on la bloque pour la caméra
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
     
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    // fin
+
+
     // Update is called once per frame
     private void Update()
     {
-     
+        //pause update
+        if (Input.GetButtonDown("Pause"))
+        {
+            TogglePauseMenu();
+        }
+
         // on vient dire que isgrounded contient la poisition du groundcheck définit dans l'éditor, la distance au sol qu'on sauhaite avoir, et le layer ground qui contient tous le terrain
         isGrounded = Physics.CheckSphere(GroundCheck.position, groundDistance, groundMask);
 
@@ -79,21 +114,7 @@ public class MouvementPour3personne : MonoBehaviour
             //alors la comment dire... trop complex en soit c'est une formule réadapter en c# donc appart la connaitre par coeur mdr
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-        //pour mettre en pause
-        if(Input.GetButtonDown("Pause"))
-        {
-            if(!ispause){
-            //mouais bof l'idée Time.timeScale = 0;
-            Cursor.lockState = CursorLockMode.None;
-            ispause = true;
-            }
 
-            else {
-            ////mouais bof l'idée Time.timeScale = 1;
-            Cursor.lockState = CursorLockMode.Locked;
-            ispause = false;
-            }
-        }
 
 
         //on vient prendre la velocity de l'axe y(haut bas) puis on fait + la valeur de la gravity qu'on multiplie chaque frame

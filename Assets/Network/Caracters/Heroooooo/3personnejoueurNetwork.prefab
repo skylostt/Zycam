@@ -89320,6 +89320,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   Camfollow: {fileID: 0}
+  pauseMenuPrefab: {fileID: 7663699199779842243, guid: 099d7dac4698ff94a9a844c116caac1c, type: 3}
+  prefabToSpawn: {fileID: 7663699199779842243, guid: 099d7dac4698ff94a9a844c116caac1c, type: 3}
+  spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &9113372990331394418
 MonoBehaviour:
   m_ObjectHideFlags: 0

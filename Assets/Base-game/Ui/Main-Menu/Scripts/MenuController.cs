@@ -28,13 +28,13 @@ public class MenuController : MonoBehaviour
 
     //audio 
 
-    public AudioClip SoundButton;
-    public float volume = 1f;
-    public float maxDistance = 500f;
+    [SerializeField] private AudioClip SoundButton;
+    [SerializeField] private float volume = 1f;
+    [SerializeField] private float maxDistance = 500f;
 
     private static AudioSource audioSource;
 
-    public static void PlayClipAtPoint(AudioClip clip, Vector3 position, float volume = 1f, float maxDistance = 500f)
+    [SerializeField] private static void PlayClipAtPoint(AudioClip clip, Vector3 position, float volume = 1f, float maxDistance = 500f)
     {
         if (audioSource == null)
         {
@@ -95,11 +95,6 @@ public class MenuController : MonoBehaviour
         PlayClipAtPoint(SoundButton, transform.position, volume, maxDistance);
     }
 
-    public void switchscene2(string _sceneName2)
-    {
-        manager.switchscene2(_sceneName2);
-        PlayClipAtPoint(SoundButton, transform.position, volume, maxDistance);
-    }
 
     public void Quit()
     {
@@ -114,7 +109,7 @@ public class MenuController : MonoBehaviour
         if (_rightPanel != null) inputs.SetShoulderListener(MenuInputs.Side.Right, _rightPanel.onClick.Invoke, _rightPanel.Select);
         if (_leftPanel != null) inputs.SetShoulderListener(MenuInputs.Side.Left, _leftPanel.onClick.Invoke, _leftPanel.Select);
     }
-   
+
 
 
 

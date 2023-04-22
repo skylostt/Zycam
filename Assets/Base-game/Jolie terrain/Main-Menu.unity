@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Multiplayer
+  m_text: Multiplayer "En Construction"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7cb2901503647d44ca1ce94fe4d1409d, type: 2}
   m_sharedMaterial: {fileID: -1082402037720858802, guid: 7cb2901503647d44ca1ce94fe4d1409d, type: 2}
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.7
+  m_fontSize: 23.6
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3883,7 +3883,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 2.8560028, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4235,8 +4235,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1174061841}
-        m_TargetAssemblyTypeName: MenuControl, Assembly-CSharp
-        m_MethodName: switchscene2
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: switchscene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -37,6 +37,13 @@ public class MouvementPour3personneNetwork : NetworkBehaviour
     //on créais la boolean isgrounded
     private bool isGrounded;
 
+
+    // Variables pour le menu de pause
+    private bool isPaused = false;
+    private GameObject pauseMenuInstance;
+
+
+
     void Start() {
         // on fait dispawn la souris pour éviter de faire peur au éléphants
         Cursor.lockState = CursorLockMode.Locked;
@@ -44,7 +51,34 @@ public class MouvementPour3personneNetwork : NetworkBehaviour
         {
         Camfollow.FollowPlayer(transform.Find("PlayerCameraRoot"));
         }
+        // on fait dispawn la souris pour éviter de faire peur au éléphants
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
+
+
+
+    //pour mettre en pause
+
+    public void TogglePauseMenu()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0f : 1f;
+
+        if (pauseMenuInstance != null)
+        {
+            pauseMenuInstance.SetActive(isPaused);
+            Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = isPaused;
+        }
+    }
+
+
+
+    //fin
+
+
+
 
     [ServerRpc]
     private void TestServerRpc()
@@ -61,15 +95,15 @@ public class MouvementPour3personneNetwork : NetworkBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!IsOwner) return;
-        if (Input.GetKeyDown(KeyCode.K))
+
+        //pause update
+        if (IsLocalPlayer && Input.GetKeyDown(KeyCode.P))
         {
-            TestClientRpc();
+            TogglePauseMenu();
         }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            TestServerRpc();
-        }       
+
+
+
 
         // on vient dire que isgrounded contient la poisition du groundcheck définit dans l'éditor, la distance au sol qu'on sauhaite avoir, et le layer ground qui contient tous le terrain
         isGrounded = Physics.CheckSphere(GroundCheck.position, groundDistance, groundMask);
@@ -106,21 +140,8 @@ public class MouvementPour3personneNetwork : NetworkBehaviour
             //alors la comment dire... trop complex en soit c'est une formule réadapter en c# donc appart la connaitre par coeur mdr
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-        //pour mettre en pause
-        if(Input.GetButtonDown("Pause"))
-        {
-            if(!ispause){
-            //mouais bof l'idée Time.timeScale = 0;
-            Cursor.lockState = CursorLockMode.None;
-            ispause = true;
-            }
 
-            else {
-            ////mouais bof l'idée Time.timeScale = 1;
-            Cursor.lockState = CursorLockMode.Locked;
-            ispause = false;
-            }
-        }
+        
 
 
         //on vient prendre la velocity de l'axe y(haut bas) puis on fait + la valeur de la gravity qu'on multiplie chaque frame
