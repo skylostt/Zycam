@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class MouvementPour3personne : MonoBehaviour
 {
@@ -24,7 +27,10 @@ public class MouvementPour3personne : MonoBehaviour
     [SerializeField] private Transform GroundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
-
+    //input action escape et b manette pour retour par exemple
+    private InputAction BackActions;
+    [SerializeField] private OpenPanelButton OptionControl;
+    [SerializeField] private InputActionAsset actions;
     
     //private
     // on recup la velocity de x,y,z
@@ -32,19 +38,33 @@ public class MouvementPour3personne : MonoBehaviour
     //on créais la boolean isgrounded
     bool isGrounded;
 
+    private void Awake()
+    {
+        BackActions = actions.FindActionMap("MenuNav").FindAction("back");
+    }
+
     void Start() {
         // on fait dispawn la souris pour éviter de faire peur au éléphants
         Cursor.lockState = CursorLockMode.Locked;
+        postProcessLayer.enabled = true;
+        postProcessLayer.enabled = isPaused;
     }
 
     //pour mettre en pause
 
     public GameObject pauseMenu;
+    private bool isPaused = false;
 
+    // effect
+    [SerializeField] private PostProcessLayer postProcessLayer;
+    [SerializeField] private CinemachineFreeLook CameraMouvement;
+    
     public void TogglePauseMenu()
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         Time.timeScale = pauseMenu.activeSelf ? 0f : 1f; // Mettre en pause ou reprendre le temps
+        CameraMouvement.enabled = !CameraMouvement.enabled;
+        
 
         // Si le menu de pause est actif, on débloque la souris et on l'affiche
         if (pauseMenu.activeSelf)
@@ -66,6 +86,9 @@ public class MouvementPour3personne : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        CameraMouvement.enabled = true;
+        postProcessLayer.enabled = false;
+        isPaused = !isPaused;
     }
     // fin
 
@@ -76,7 +99,20 @@ public class MouvementPour3personne : MonoBehaviour
         //pause update
         if (Input.GetButtonDown("Pause"))
         {
+            isPaused = !isPaused;
+            postProcessLayer.enabled = isPaused;
             TogglePauseMenu();
+        }
+        if (BackActions.triggered && !OptionControl.test)
+        {
+            Debug.Log("Back action triggered");
+        
+            ResumeGame();
+        }
+        
+        if(BackActions.triggered)
+        {
+            OptionControl.test = false;
         }
 
         // on vient dire que isgrounded contient la poisition du groundcheck définit dans l'éditor, la distance au sol qu'on sauhaite avoir, et le layer ground qui contient tous le terrain

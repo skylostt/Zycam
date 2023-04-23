@@ -38,7 +38,7 @@ public class MenuController : MonoBehaviour
     {
         if (audioSource == null)
         {
-            // Trouver l'objet audio dans la scène et obtenir l'AudioSource attaché
+            // Trouver l'objet audio dans la scï¿½ne et obtenir l'AudioSource attachï¿½
             audioSource = GameObject.Find("Audio").GetComponent<AudioSource>();
         }
 
@@ -86,9 +86,47 @@ public class MenuController : MonoBehaviour
     {
         OpenOnePanel(_type, true);
         PlayClipAtPoint(SoundButton, transform.position, volume, maxDistance);
-
+        Optionisopen = true;
+        
+        if(game)
+        {
+            if (isOptionOpen)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeFor(0.05f);
+            }
+        }
+        else{}
+        
     }
 
+    // void pour gerer le temps
+    public bool Optionisopen = false;
+    private bool isOptionOpen = false;
+    [SerializeField] private bool game;
+    private void ResumeFor(float seconds)
+    {
+        Time.timeScale = 1f;
+        isOptionOpen = true;
+        StartCoroutine(PauseAfter(seconds));
+    }
+    private IEnumerator PauseAfter(float seconds)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
+        PauseGame();
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0f;
+        isOptionOpen = false;
+    }
+    // fin void pour gerer le temps
+    
+    
     public void switchscene(string _sceneName)
     {
         manager.switchscene(_sceneName);

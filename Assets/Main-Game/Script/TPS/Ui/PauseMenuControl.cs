@@ -19,7 +19,6 @@ public class PauseMenuControl : MonoBehaviour
     {
         manager.switchscene(_sceneName);
         Time.timeScale = 1f;
-
     }
 
 
