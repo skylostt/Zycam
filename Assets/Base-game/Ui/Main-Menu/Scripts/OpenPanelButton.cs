@@ -9,6 +9,7 @@ public class OpenPanelButton : MonoBehaviour
     [SerializeField] private PanelType type;
     [SerializeField] private OpenPanelButton onSwitchBackAction;
     public bool test;
+    public bool verif;
     private MenuController controller;
     private MenuInputs inputs;
 
@@ -24,5 +25,6 @@ public class OpenPanelButton : MonoBehaviour
         if (onSwitchBackAction != null) inputs.SetBackListener(onSwitchBackAction.OnClick);
         else inputs.SetBackListener();
         test = !test;
+        verif = !verif;
     }
 }

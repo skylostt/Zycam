@@ -86,7 +86,6 @@ public class MenuController : MonoBehaviour
     {
         OpenOnePanel(_type, true);
         PlayClipAtPoint(SoundButton, transform.position, volume, maxDistance);
-        Optionisopen = true;
         
         if(game)
         {
@@ -104,8 +103,7 @@ public class MenuController : MonoBehaviour
     }
 
     // void pour gerer le temps
-    public bool Optionisopen = false;
-    private bool isOptionOpen = false;
+    public bool isOptionOpen = false;
     [SerializeField] private bool game;
     private void ResumeFor(float seconds)
     {

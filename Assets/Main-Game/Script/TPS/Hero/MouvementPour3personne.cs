@@ -8,10 +8,11 @@ using UnityEngine.InputSystem;
 public class MouvementPour3personne : MonoBehaviour
 {
     //ref d'autre script
-    
+    [Header ("Boum boum les pandaroux")]
     [SerializeField] private Destruction KillboostAgent;
 
     //Mouvement déplacement+direction
+    [Header("Mouvement/Cam")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cam;
     public float speed = 6f;
@@ -19,17 +20,23 @@ public class MouvementPour3personne : MonoBehaviour
     float turnsmoothVelocity;
 
     //jump
+    [Header("Jump/Gravité")]
     [SerializeField] private float jumpHeight = 3f;
     //gavité
     [SerializeField] private float gravity = -9.81f;
     
     //isgorundsecu
+    [Header("Un sol ici je pense pas ")]
     [SerializeField] private Transform GroundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
+    
     //input action escape et b manette pour retour par exemple
     private InputAction BackActions;
+    [Header("Input")]
     [SerializeField] private OpenPanelButton OptionControl;
+    [SerializeField] private OpenPanelButton CloseControl;
+    [SerializeField] private MenuController UIControl;
     [SerializeField] private InputActionAsset actions;
     
     //private
@@ -51,11 +58,12 @@ public class MouvementPour3personne : MonoBehaviour
     }
 
     //pour mettre en pause
-
+    [Header("Prendre une pause sa fait du bien")]
     public GameObject pauseMenu;
     private bool isPaused = false;
 
     // effect
+    [Header("Hum le rtx version wish")]
     [SerializeField] private PostProcessLayer postProcessLayer;
     [SerializeField] private CinemachineFreeLook CameraMouvement;
     
@@ -89,6 +97,8 @@ public class MouvementPour3personne : MonoBehaviour
         CameraMouvement.enabled = true;
         postProcessLayer.enabled = false;
         isPaused = !isPaused;
+        UIControl.isOptionOpen = false;
+
     }
     // fin
 
@@ -103,16 +113,22 @@ public class MouvementPour3personne : MonoBehaviour
             postProcessLayer.enabled = isPaused;
             TogglePauseMenu();
         }
+        //Input back etc pause
         if (BackActions.triggered && !OptionControl.test)
-        {
-            Debug.Log("Back action triggered");
-        
+        {        
             ResumeGame();
+            Debug.Log("ehe");
         }
         
         if(BackActions.triggered)
         {
             OptionControl.test = false;
+        }
+
+        if(CloseControl.verif)
+        {
+            OptionControl.test = false;
+            CloseControl.verif = false;
         }
 
         // on vient dire que isgrounded contient la poisition du groundcheck définit dans l'éditor, la distance au sol qu'on sauhaite avoir, et le layer ground qui contient tous le terrain
