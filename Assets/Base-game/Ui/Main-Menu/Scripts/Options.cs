@@ -7,7 +7,9 @@ using TMPro;
 
 public class Options : MonoBehaviour
 {
-    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider volumeSliderMaster;
+    [SerializeField] private Slider volumeSliderMusique;
+    [SerializeField] private Slider volumeSliderSon;
     [SerializeField] private TMP_Dropdown resolutionDropDown;
     [SerializeField] private Toggle fullscreenToggle;
     [SerializeField] private AudioMixer audioMixer;
@@ -33,19 +35,37 @@ public class Options : MonoBehaviour
         //Init les valeurs
         resolutionDropDown.value = currentResolutionID;
         fullscreenToggle.isOn = Screen.fullScreen;
-        audioMixer.GetFloat("MasterVol", out float _volume);
-        volumeSlider.value = Mathf.InverseLerp(-80, 5f, _volume);
+        audioMixer.GetFloat("MasterVol", out float _volumeMaster);
+        audioMixer.GetFloat("MusiqueVol", out float _volumeMusique);
+        audioMixer.GetFloat("SonVol", out float _volumeSon);
+        volumeSliderMaster.value = Mathf.InverseLerp(-80, 5f, _volumeMaster);
+        volumeSliderMusique.value = Mathf.InverseLerp(-80, 5f, _volumeMusique);
+        volumeSliderSon.value = Mathf.InverseLerp(-80, 5f, _volumeSon);
 
         //Link les events
-        volumeSlider.onValueChanged.AddListener(UpdateVolume);
+        volumeSliderMaster.onValueChanged.AddListener(UpdateVolumeMaster);
+        volumeSliderMusique.onValueChanged.AddListener(UpdateVolumeMusique);
+        volumeSliderSon.onValueChanged.AddListener(UpdateVolumeSon);
         resolutionDropDown.onValueChanged.AddListener(UpdateResolution);
         fullscreenToggle.onValueChanged.AddListener(ToggleFullscren);
     }
 
-    private void UpdateVolume(float _value)
+    private void UpdateVolumeMaster(float _value)
     {
         audioMixer.SetFloat("MasterVol", Mathf.Lerp(-80, 5f, _value));
         print("Audio Mixer : " + _value);
+    }
+
+        private void UpdateVolumeMusique(float _value)
+    {
+        audioMixer.SetFloat("MusiqueVol", Mathf.Lerp(-80, 5f, _value));
+        print("Audio MixerMusique : " + _value);
+    }
+
+        private void UpdateVolumeSon(float _value)
+    {
+        audioMixer.SetFloat("SonVol", Mathf.Lerp(-80, 5f, _value));
+        print("Audio MixerSon : " + _value);
     }
 
     private void UpdateResolution(int _value)

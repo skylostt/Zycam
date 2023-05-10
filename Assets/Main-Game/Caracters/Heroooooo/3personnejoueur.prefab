@@ -89198,7 +89198,13 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  OptionControl: {fileID: 0}
+  CloseControl: {fileID: 0}
+  UIControl: {fileID: 0}
+  actions: {fileID: 0}
   pauseMenu: {fileID: 2732196469398070393, guid: f12facf3e3c611340b148f865109a145, type: 3}
+  postProcessLayer: {fileID: 0}
+  CameraMouvement: {fileID: 0}
 --- !u!114 &7490896246215570475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89249,7 +89255,7 @@ AudioSource:
   m_GameObject: {fileID: 6496375784587879169}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 5359967778856054f83989aaa6c68e00, type: 2}
+  OutputAudioMixerGroup: {fileID: -6655455665102878369, guid: 5359967778856054f83989aaa6c68e00, type: 2}
   m_audioClip: {fileID: 8300000, guid: aaa60eef96890d44b8507891af3bbfda, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
