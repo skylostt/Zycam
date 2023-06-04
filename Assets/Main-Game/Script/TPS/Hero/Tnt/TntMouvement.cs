@@ -9,7 +9,7 @@ public class TntMouvement : MonoBehaviour
 {
     //ref d'autre script
     [Header ("Boum boum les pandaroux")]
-    [SerializeField] private Destruction KillboostAgent;
+    [SerializeField] private DestructionTnt KillboostAgent;
 
     //Mouvement déplacement+direction
     [Header("Mouvement/Cam")]

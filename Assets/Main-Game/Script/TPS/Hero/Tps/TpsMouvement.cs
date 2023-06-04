@@ -9,7 +9,7 @@ public class TpsMouvement : MonoBehaviour
 {
     //ref d'autre script
     [Header ("Boum boum les pandaroux")]
-    [SerializeField] private Destruction KillboostAgent;
+    [SerializeField] private DestructionTps KillboostAgent;
 
     //Mouvement déplacement+direction
     [Header("Mouvement/Cam")]

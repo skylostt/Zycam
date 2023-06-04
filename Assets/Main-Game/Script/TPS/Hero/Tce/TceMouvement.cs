@@ -9,7 +9,7 @@ public class TceMouvement : MonoBehaviour
 {
     //ref d'autre script
     [Header ("Boum boum les pandaroux")]
-    [SerializeField] private Destruction KillboostAgent;
+    [SerializeField] private DestructionTce KillboostAgent;
 
     //Mouvement déplacement+direction
     [Header("Mouvement/Cam")]

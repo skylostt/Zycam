@@ -9,7 +9,7 @@ public class SpnMouvement : MonoBehaviour
 {
     //ref d'autre script
     [Header ("Boum boum les pandaroux")]
-    [SerializeField] private Destruction KillboostAgent;
+    [SerializeField] private DestructionSpn KillboostAgent;
 
     //Mouvement déplacement+direction
     [Header("Mouvement/Cam")]
