@@ -66,8 +66,8 @@ public class spawner : MonoBehaviour
         GameObject obj = GetPooledObject();
         if (obj == null) return;
         //on vient def 3 random pour x y z à partir des vector 3 qu'on à définit dans le scipt
-        float randomX = Random.Range(ZoneDeSpawnMin.x, ZoneDeSpawnMax.x);
-        float randomY = Random.Range(ZoneDeSpawnMin.y, ZoneDeSpawnMax.y);
+        float randomX = Random.Range(0, 10);
+        float randomY = Random.Range(0, 10);
         float randomZ = Random.Range(ZoneDeSpawnMin.z, ZoneDeSpawnMax.z);
         //on l'applique
         obj.transform.position = new Vector3 (randomX, randomY, randomZ);

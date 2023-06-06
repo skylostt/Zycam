@@ -16,6 +16,7 @@ public class SpnMouvement : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cam;
     public float speed = 6f;
+
     [SerializeField] private float turnsmoothTime = 0.1f;
     float turnsmoothVelocity;
 
@@ -45,6 +46,8 @@ public class SpnMouvement : MonoBehaviour
     //on créais la boolean isgrounded
     bool isGrounded;
 
+
+
     private void Awake()
     {
         BackActions = actions.FindActionMap("MenuNav").FindAction("back");
@@ -55,6 +58,7 @@ public class SpnMouvement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         postProcessLayer.enabled = true;
         postProcessLayer.enabled = isPausedSpn;
+        
     }
 
     //pour mettre en pause
@@ -115,6 +119,7 @@ public class SpnMouvement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
         //pause update
         if (Input.GetButtonDown("Pause"))
         {
