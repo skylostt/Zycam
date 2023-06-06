@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Base-game/Jolie terrain/Main-Menu.unity
     guid: 970a600b6667ab7408d4ced56eea47a1
   - enabled: 1
-    path: Assets/Main-Game/Jolie terrain/Test_Room_Main.unity
+    path: Assets/Main-Game/Jolie terrain/Glacialethos.unity
     guid: 17b318da94c778f4da91877d740d6b22
   - enabled: 1
     path: Assets/Network/Jolie terrain/Test_RoomNetwork.unity
